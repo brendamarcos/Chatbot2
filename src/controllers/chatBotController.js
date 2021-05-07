@@ -122,17 +122,16 @@ let handlePostback = async (sender_psid, received_postback) => {
     let payload = received_postback.payload;
     // Set the response based on the postback payload
 
-    await chatBotService.markMessageSeen(sender_psid);
     switch (payload) {
         case "GET_STARTED":
         //get facebook username
         let username = await chatBotService.getFacebookUsername(sender_psid);
         response = {"text": `Bienvenido ${username} a Estudio365`};
         break;
-        case "yes":
+        case "no":
             response = {};
             break;
-        case "no":
+        case "yes":
             response = {};
             break;
             default:
@@ -142,7 +141,6 @@ let handlePostback = async (sender_psid, received_postback) => {
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
 }
-
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
   // Construct the message body
