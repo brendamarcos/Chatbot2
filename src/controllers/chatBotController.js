@@ -118,25 +118,25 @@ function handleMessage(sender_psid, received_message) {
 // Handles messaging_postbacks events
 let handlePostback = async (sender_psid, received_postback) => {
     let response;
-  
     // Get the payload for the postback
     let payload = received_postback.payload;
-
     // Set the response based on the postback payload
+
+    await chatBotService.markMessageSeen(sender_psid);
     switch (payload) {
         case "GET_STARTED":
-            //get username
-            let username = await chatBotService.getFacebookUsername(sender_psid);
-            response = {"text": `Bienvenido ${username} a Estudio365`};
+        //get facebook username
+        let username = await chatBotService.getFacebookUsername(sender_psid);
+        response = {"text": `Bienvenido ${username} a Estudio365`};
+        break;
+        case "yes":
+            response = {};
             break;
-            case "no":
-                response = {};
-                break;
-            case "yes":
-                response = {};
-                break;
+        case "no":
+            response = {};
+            break;
             default:
-                console.log("Something wrong with switch case payload");
+            console.log("Something wrong with switch case payload");
     }
 
     // Send the message to acknowledge the postback
