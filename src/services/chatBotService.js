@@ -24,4 +24,4 @@ let getFacebookUsername = (sender_psid) => {
 
 module.exports = {
     getFacebookUsername: getFacebookUsername,
-}
+};

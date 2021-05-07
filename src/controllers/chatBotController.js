@@ -126,7 +126,7 @@ let handlePostback = async (sender_psid, received_postback) => {
     switch (payload) {
         case "GET_STARTED":
             //get username
-            let username = await chatBotService.getFacebookUserName(sender_psid);
+            let username = await chatBotService.getFacebookUsername(sender_psid);
             response = {"text": `Bienvenido ${username} a Estudio365`};
             break;
             case "no":
@@ -167,7 +167,6 @@ function callSendAPI(sender_psid, response) {
     }
   }); 
 }
-
 
 module.exports = {
     postWebhook: postWebhook,
