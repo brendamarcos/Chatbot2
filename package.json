@@ -1,0 +1,36 @@
+{
+  "name": "chatbot2",
+  "version": "1.0.0",
+  "description": "chatbot con nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brendamarcos/Chatbot2.git"
+  },
+  "keywords": [
+    "messenger",
+    "chatbot",
+    "nodejs"
+  ],
+  "author": "Brenda M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brendamarcos/Chatbot2/issues"
+  },
+  "homepage": "https://github.com/brendamarcos/Chatbot2#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^9.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.7"
+  }
+}
