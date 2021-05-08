@@ -126,11 +126,13 @@ let handlePostback = async (sender_psid, received_postback) => {
         case "GET_STARTED":
         //get facebook username
         let username = await chatBotService.getFacebookUsername(sender_psid);
+        
+        //send welcome response to users
         await chatBotService.sendResponseWelcomeNewCustomer(username, sender_psid);
-        // response = {"text": `Bienvenido ${username} a Estudio365`};
         break;
-        case "no":
-            response = {};
+        case "ESPECIALIZACIONES":
+            //Enviar las espacializaciones
+            await chatBotService.sendEspecializaciones(sender_psid);
             break;
         case "yes":
             response = {};

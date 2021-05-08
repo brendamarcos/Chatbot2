@@ -34,12 +34,13 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                   "payload": {
                     "template_type": "generic",
                     "elements": [{
-                      "title": "Estudio 365",
+                      "title": "Estudio365",
+                      "subtitle": "Esta es una institución que brinda cursos relacionados a la tecnología.",
                       "image_url": "https://miro.medium.com/max/1024/1*vxjAHkrXbGG6gOiPZgjeZA.jpeg",
                       "buttons": [
                         {
                           "type": "postback",
-                          "title": "Especializaciones",
+                          "title": "Mostrar especializaciones",
                           "payload": "ESPECIALIZACIONES",
                         },
                       ],
@@ -55,6 +56,49 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
         
             resolve("done!")
         }catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let sendEspecializaciones = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let response = {
+                "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                        {
+                            "title": "Nuestras especializaciones",
+                            "subtitle": "Aquí te mostramos las especializaciones que tenemos en nuestra institución.",
+                            "image_url": "https://blogs.iadb.org/conocimiento-abierto/wp-content/uploads/sites/10/2017/11/technology-banner.jpg",
+                            "buttons": [
+                                {
+                                    "type": "postback",
+                                    "title": "COMPUTACIÓN",
+                                    "payload": "ESPECIALIZACION_COMPUTACION",
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "PROGRAMACIÓN",
+                                    "payload": "ESPECIALIZACION_PROGRAMACION",
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "BASE DE DATOS",
+                                    "payload": "ESPECIALIZACION_BASE_DATOS",
+                                },
+                            ],
+                        },
+                    ]
+                    }
+                }
+            };
+            // Enviar un mensaje de bienvenida
+            await sendMessage(sender_psid, response);
+        }catch(e){
             reject(e);
         }
     });
@@ -87,5 +131,6 @@ let sendMessage = (sender_psid, response) => {
 
 module.exports = {
     getFacebookUsername: getFacebookUsername,
-    sendResponseWelcomeNewCustomer: sendResponseWelcomeNewCustomer
+    sendResponseWelcomeNewCustomer: sendResponseWelcomeNewCustomer,
+    sendEspecializaciones: sendEspecializaciones
 };
