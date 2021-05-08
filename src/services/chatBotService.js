@@ -26,31 +26,37 @@ let getFacebookUsername = (sender_psid) => {
 
 let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
     return new Promise( async (resolve, reject) => {
-        let response_first = {"text": `Bienvenido ${username} a Estudio365`};
-        let response_second = {
-            "attachment": {
-              "type": "template",
-              "payload": {
-                "template_type": "generic",
-                "elements": [{
-                  "title": "Estudio 365",
-                  "image_url": "https://miro.medium.com/max/1024/1*vxjAHkrXbGG6gOiPZgjeZA.jpeg",
-                  "buttons": [
-                    {
-                      "type": "postback",
-                      "title": "Especializaciones",
-                      "payload": "ESPECIALIZACIONES",
-                    },
-                  ],
-                }]
-              }
-            }
-        };
-        // Enviar un mensaje de bienvenida
-        await sendMessage(sender_psid, response_first);
-
-        // Send a image with button view Especializaciones
-        await sendMessage(sender_psid, response_second);  
+        try{
+            let response_first = {"text": `Bienvenido ${username} a Estudio365`};
+            let response_second = {
+                "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                      "title": "Estudio 365",
+                      "image_url": "https://miro.medium.com/max/1024/1*vxjAHkrXbGG6gOiPZgjeZA.jpeg",
+                      "buttons": [
+                        {
+                          "type": "postback",
+                          "title": "Especializaciones",
+                          "payload": "ESPECIALIZACIONES",
+                        },
+                      ],
+                    }]
+                  }
+                }
+            };
+            // Enviar un mensaje de bienvenida
+            await sendMessage(sender_psid, response_first);
+    
+            // Send a image with button view Especializaciones
+            await sendMessage(sender_psid, response_second);  
+        
+            resolve("done!")
+        }catch (e) {
+            reject(e);
+        }
     });
 };
 
